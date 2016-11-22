@@ -130,7 +130,13 @@
     </a>
 </div>
 
-@{srednia = suma / Model.Count();
+
+@{
+    if (Model == null)
+    {
+        srednia = suma / Model.Count();
+    }
+    
   /*
   DateTime koniec = DateTime.ParseExact("2016-12-02", 
                                         "yyyy-MM-dd",

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DaysContainer.Models;
+using DaysContainer.ViewModels;
 
 namespace DaysContainer.Controllers
 {
@@ -17,7 +18,10 @@ namespace DaysContainer.Controllers
         // GET: Adres
         public ActionResult Index()
         {
-            return View(db.Adres.ToList());
+            AdresyDni adresyDni = new AdresyDni();
+            adresyDni.Adresy = db.Adres.ToList();
+            adresyDni.Days = db.Days.ToList();
+            return View(adresyDni);
         }
 
         // GET: Adres/Details/5
