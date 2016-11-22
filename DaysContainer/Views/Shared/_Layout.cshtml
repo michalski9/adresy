@@ -6,7 +6,7 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-   
+   @RenderSection("styles", required: false)
 
 </head>
 <body>
@@ -28,6 +28,8 @@
                     <li>@Html.ActionLink("Dziennik", "Index", "Days")</li>
                     <li>@Html.ActionLink("Licznik", "Licznik", "Days")</li>
                     <li>@Html.ActionLink("Adresy","Index","Adres")</li>
+                    <li>@Html.ActionLink("Pensje","Index","Pensjas")</li>
+                    <li>@Html.ActionLink("Pracownicy","Index","Pracowniks")</li>
                 </ul>
                 </ul>
                 @Html.Partial("_LoginPartial")

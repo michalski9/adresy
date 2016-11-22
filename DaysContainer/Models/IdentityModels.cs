@@ -33,5 +33,9 @@ namespace DaysContainer.Models
         public System.Data.Entity.DbSet<DaysContainer.Models.Day> Days { get; set; }
 
         public System.Data.Entity.DbSet<DaysContainer.Models.Adres> Adres { get; set; }
+
+        public System.Data.Entity.DbSet<DaysContainer.Models.Pensja> Pensjas { get; set; }
+
+        public DbSet<Pracownik> Pracownicy { get; set; }
     }
 }
