@@ -1,0 +1,84 @@
+﻿@model DaysContainer.Models.Day
+
+@{
+    ViewBag.Title = "Usuń";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h3>Czy na pewno chcesz to usunąć?</h3>
+<div>
+    <h4>Day</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+         <strong>@Model.Data.ToShortDateString()</strong>   
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Godziny)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Godziny)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obecnosc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obecnosc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ocena)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ocena)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Miejsce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Miejsce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prowadzacy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prowadzacy)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color"><div class="row">
+                                           <input type="submit" value="Usuń" class="col-md-4 btn btn-danger" />
+                                               @Html.ActionLink("Powrót", "Index", null, new { @class = "col-md-4 btn btn-primary" })
+                                               @* @Html.ActionLink("Narka wychodzę :) ", "http://www.google.com", null, new { @class = "btn btn-warning"}) *@
+                                               <a href="@Url.Content("http://www.google.com")" class="col-md-4 btn btn-warning">Narka wychodzę :) </a>
+            </div>
+            
+        </div>
+    }
+</div>

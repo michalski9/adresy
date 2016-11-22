@@ -1,0 +1,173 @@
+﻿@model IEnumerable<DaysContainer.Models.Day>
+
+@{
+    ViewBag.Title = "Dziennik zajęć";
+    decimal suma = 0;
+    decimal srednia = 0;
+    int nobecnosc = 0;
+}
+<style>
+    th{
+        background-color: rgba(63, 65, 38, 0.72);
+    }
+    td{
+        background-color: #cbcbcb;
+    }
+
+</style>
+
+<p id="wwrite"></p>
+
+<h2>@ViewBag.Title</h2>
+
+<p>
+    @Html.ActionLink("Utwórz nowy", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <span class="glyphicon glyphicon-calendar" ></span> @Html.DisplayNameFor(model => model.Data)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-time"></span> @Html.DisplayNameFor(model => model.Godziny)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-check" ></span> @Html.DisplayNameFor(model => model.Obecnosc)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-bookmark"></span> @Html.DisplayNameFor(model => model.Temat)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-stats"></span> @Html.DisplayNameFor(model => model.Ocena)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-pushpin"></span> @Html.DisplayNameFor(model => model.Miejsce)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-user"></span> @Html.DisplayNameFor(model => model.Prowadzacy)
+        </th>
+        <th>
+            <span class="glyphicon glyphicon-signal"></span>  @Html.DisplayNameFor(model => model.Stopien_zadowolenia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Godziny)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Obecnosc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Temat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ocena)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Miejsce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prowadzacy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stopien_zadowolenia)
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+    suma = suma + item.Ocena;
+   // int liczba = Model.Count();
+    if (item.Obecnosc == false) {
+         nobecnosc = nobecnosc + 1;
+    }
+}
+ 
+
+</table>
+<div id="myCarousel" class="carousel slide" style="height: 1000px;"data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/Content/1.png" width="1653"  height="873" alt="tst">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/2.jpg" width="1653" height="873" alt="Chania">
+        </div>
+
+        <div class="item">
+            <img src="~/Content/4.png" width="1653" height="873" alt="Flower">
+        </div>
+            
+        
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+@{srednia = suma / Model.Count();
+  /*
+  DateTime koniec = DateTime.ParseExact("2016-12-02", 
+                                        "yyyy-MM-dd",
+                                        System.Globalization.CultureInfo.InvariantCulture);
+  string data = DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day;
+
+  DateTime pozostalo = DateTime.ParseExact(data, 
+                                           "yyyy-MM-dd",
+                                           System.Globalization.CultureInfo.InvariantCulture);
+  */
+
+  DateTime koniec = DateTime.Parse("2016-12-02");
+  DateTime pozostalo = DateTime.Now;
+  
+  double wynik = (koniec - pozostalo).TotalDays;
+  
+  }
+<p> Średnia ocen to: @srednia.ToString("N2")</p>
+<p>Do końca kursu: @wynik.ToString("N2")</p>
+<hr />
+<p> Łączna liczba zajec: @Model.Count();</p>
+<p>Liczba twoich nieobecności: @nobecnosc</p>
+<button id="test">Sprawdzenie liczby wpisów w bazie</button>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#test").click(function () {
+                $.get("@Url.Action("DatabaseCount", "Days")", function (data, status) {
+                    alert("Data: " + data.data + "\nStatus: " + status);
+                });
+            })
+
+        });
+
+        $('select').on('change', function () {
+            alert(this.value);
+        });
+       
+    </script>
+}

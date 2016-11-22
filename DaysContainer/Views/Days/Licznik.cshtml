@@ -1,0 +1,95 @@
+﻿@model DaysContainer.ViewModels.UserDayViewModel
+
+
+@{
+    ViewBag.Title = "licznik";
+}
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs-3.3.6/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/se-1.2.0/datatables.min.css" />
+
+
+
+<div  class="container center-block">
+    <div class="row center-bloc">
+        <div class="col-sm-12">
+            <h1>nagłówek</h1>
+        </div>
+    </div>
+    <div class="row c text-center">
+        <div class="col-sm-12">
+            <div class="col-sm-8">Liczba pozycji:<span id="shower"></span></div>
+            <div class="col-sm-4"><button id="show"class="btn-primary" >ok</button></div>
+        </div>
+    </div>
+    <div class="row  text-center">
+        <div class="col-sm-4">
+            <span><input id="inp1" type="text" /></span><span><button class="btn-primary">ok</button></span>
+        </div>
+    </div>
+    <div class="row  text-center">
+        <div class="col-sm-4">
+            <span><input id="inp2" type="text" /></span><span><button class="btn-primary">ok</button></span>
+        </div>
+    </div>
+</div>
+<h2>@Model.User.UserName</h2>
+<p>Has: @Model.User.PasswordHash</p>
+
+<hr />
+
+<table id="example" class="display" width="100%" cellspacing="0">
+    <thead style="font-weight:bold;">
+        <tr>
+            <td>Id</td>
+            <td>Data</td>
+            <td>Godzina</td>
+            <td>Miejsce</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Days)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Data;</td>
+                <td>@item.Godziny</td>
+                <td>@item.Miejsce</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+
+    </tfoot>
+</table>
+
+@section Scripts{
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.6/jszip-2.5.0/pdfmake-0.1.18/dt-1.10.12/b-1.2.2/b-colvis-1.2.2/b-flash-1.2.2/b-html5-1.2.2/b-print-1.2.2/cr-1.3.2/kt-2.1.3/r-2.1.0/se-1.2.0/datatables.min.js"></script>
+
+    <script>
+        $("#show").click(function () {
+           
+            $.get("@Url.Action("DatabaseCount", "Days")", function (data, status) {
+                
+                $("#shower").text(data.data);
+                $("#inp1").val(data.first);
+                $("#inp2").val(data.last);
+            });
+           
+               
+            
+
+            
+                
+              
+           
+        });
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+}
+
