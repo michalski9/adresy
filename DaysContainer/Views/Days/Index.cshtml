@@ -6,6 +6,7 @@
     decimal srednia = 0;
     int nobecnosc = 0;
 }
+<link href="~/Content/rateit.css" rel="stylesheet" />
 <style>
     th{
         background-color: rgba(63, 65, 38, 0.72);
@@ -84,7 +85,7 @@
             @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
         </td>
     </tr>
-    suma = suma + item.Ocena;
+   // suma = suma + item.Ocena;
    // int liczba = Model.Count();
     if (item.Obecnosc == false) {
          nobecnosc = nobecnosc + 1;
@@ -160,8 +161,21 @@
 <p> Łączna liczba zajec: @Model.Count();</p>
 <p>Liczba twoich nieobecności: @nobecnosc</p>
 <button id="test">Sprawdzenie liczby wpisów w bazie</button>
+
+<input type="hidden" id="backing7">
+<div id="rateit7">
+</div>
+
+
 @section Scripts{
-    <script>
+
+<script type="text/javascript">
+    $(function () { $('#rateit7').rateit({ max: 20, step: 2, backingfld: '#backing7' }); });
+</script>
+<script src="~/Scripts/jquery.rateit.js"></script>
+   
+    
+     <script>
         $(document).ready(function () {
             $("#test").click(function () {
                 $.get("@Url.Action("DatabaseCount", "Days")", function (data, status) {
@@ -174,6 +188,8 @@
         $('select').on('change', function () {
             alert(this.value);
         });
+
+        
        
     </script>
 }

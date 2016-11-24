@@ -23,14 +23,14 @@ namespace DaysContainer.Models {
         public string Temat { get; set; }
 
         [Range(1,6)]
-        public decimal Ocena { get; set; }
+        public double Ocena { get; set; }
         [Required]
         public Miejsce Miejsce { get; set; }
         [Required]
         public string Prowadzacy { get; set; }
 
         [Display(Name="Stopień zadowolenia")]
-        public int Stopien_zadowolenia { get; set; }
+        public double Stopien_zadowolenia { get; set; }
 
         public string GetDataGodzina(){
             string text = Godziny + Data;

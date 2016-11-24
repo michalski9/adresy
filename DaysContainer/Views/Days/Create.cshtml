@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Utwórz";
 }
-
+<link href="~/Content/rateit.css" rel="stylesheet" />
 <h2>@ViewBag.Title</h2>
 
 
@@ -52,7 +52,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Ocena, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Ocena, new { htmlAttributes = new { @class = "form-control" } })
+                <input name="Ocena" id="Ocena" type="hidden" >
+                <div id="rateit7">
+                </div>
                 @Html.ValidationMessageFor(model => model.Ocena, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -75,7 +77,10 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Stopien_zadowolenia, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Stopien_zadowolenia, new { htmlAttributes = new { @class = "form-control" } })
+             
+                <input name="Stopien_zadowolenia" id="Stopien_zadowolenia" type="hidden">
+                <div id="rateit8">
+                </div>
                 @Html.ValidationMessageFor(model => model.Stopien_zadowolenia, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,5 +98,16 @@
 </div>
 
 @section Scripts {
+
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.rateit.js"></script>
+        
+<script type="text/javascript">
+    $(function () { $('#rateit7').rateit({ max: 6, step: 0.5, backingfld: '#Ocena' }); });
+</script>
+<script type="text/javascript">
+    $(function () { $('#rateit8').rateit({ max: 6, step: 0.5, backingfld: '#Stopien_zadowolenia' }); });
+</script>
 }
+
+

@@ -180,6 +180,14 @@
     <Compile Include="Migrations\201611221307446_scal.Designer.cs">
       <DependentUpon>201611221307446_scal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611221339101_zmiana.cs" />
+    <Compile Include="Migrations\201611221339101_zmiana.Designer.cs">
+      <DependentUpon>201611221339101_zmiana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611241148256_typ.cs" />
+    <Compile Include="Migrations\201611241148256_typ.Designer.cs">
+      <DependentUpon>201611241148256_typ.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Adres.cs" />
@@ -199,6 +207,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\delete.gif" />
+    <Content Include="Content\rateit.css" />
+    <Content Include="Content\star.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -208,6 +219,9 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery.rateit.js" />
+    <Content Include="Scripts\jquery.rateit.min.js" />
+    <Content Include="Scripts\jquery.rateit.min.js.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -293,6 +307,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611221307446_scal.resx">
       <DependentUpon>201611221307446_scal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611221339101_zmiana.resx">
+      <DependentUpon>201611221339101_zmiana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611241148256_typ.resx">
+      <DependentUpon>201611241148256_typ.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

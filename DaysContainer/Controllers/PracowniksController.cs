@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DaysContainer.Models;
+using DaysContainer.ViewModels;
 
 namespace DaysContainer.Controllers
 {
@@ -17,7 +18,7 @@ namespace DaysContainer.Controllers
         // GET: Pracowniks
         public ActionResult Index()
         {
-            return View(db.Pracownicy.ToList());
+            return View();
         }
 
         // GET: Pracowniks/Details/5
@@ -46,16 +47,19 @@ namespace DaysContainer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Imie,Nazwisko")] Pracownik pracownik)
+        public ActionResult Create( PracownikCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                Pracownik pracownik = viewModel.Pracownik;
+                pracownik.PAdres = viewModel.Adres;
+
                 db.Pracownicy.Add(pracownik);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(pracownik);
+            return View(viewModel);
         }
 
         // GET: Pracowniks/Edit/5
