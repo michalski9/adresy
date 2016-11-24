@@ -40,6 +40,6 @@ namespace DaysContainer.Models {
     }
 
     public enum  Miejsce {
-        BRZEG = 0,OŁAWA = 1
+        BRZEG = 0,OŁAWA = 1, Warszawa = 2
     }
 }
